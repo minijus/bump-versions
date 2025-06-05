@@ -1,0 +1,30 @@
+{
+  "extends": [
+    "config:recommended",
+    "customManagers:dockerfileVersions"
+  ],
+  "enabledManagers": [
+    "dockerfile",
+    "custom.regex"
+  ],
+  "dependencyDashboard": true,
+  "packageRules": [
+    {
+      "matchFileNames": [
+        "**/Dockerfile"
+      ],
+      "bumpVersions": [
+        {
+          "name": "Update LABEL version in Dockerfile",
+          "filePatterns": [
+            "{{packageFileDir}}\\\/Dockerfile"
+          ],
+          "matchStrings": [
+            "LABEL version[ =][\"']?(?<version>.+)[\"']?"
+          ],
+          "bumpType": "patch"
+        }
+      ]
+    }
+  ]
+}
